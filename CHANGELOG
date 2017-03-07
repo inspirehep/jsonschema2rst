@@ -1,0 +1,397 @@
+* 0.0.122 "ammirate <cesarano2607@gmail.com>"
+    MINOR a75d7d3c: import sorted
+
+* 0.0.121 "ammirate <cesarano2607@gmail.com>"
+    MINOR 94d025e7: changed `basestring` for python3.5 compatibility
+
+* 0.0.120 "ammirate <cesarano2607@gmail.com>"
+    MINOR c9e7ca9b: Fixed travis errors
+
+* 0.0.119 "ammirate <cesarano2607@gmail.com>"
+    MINOR 98fa6249: fixed pep8 style
+
+* 0.0.118 "ammirate <cesarano2607@gmail.com>"
+    MINOR 4dc65cd3: added requirement-test.txt
+
+* 0.0.117 "ammirate <cesarano2607@gmail.com>"
+    MINOR 9397355d: fixed long_description in setup.py
+
+* 0.0.116 "ammirate <cesarano2607@gmail.com>"
+    MINOR 6dfe6e85: removed duplicates in indexes files
+
+* 0.0.115 "ammirate <cesarano2607@gmail.com>"
+    MINOR 02315bc8: fixed check for files with same name. Updated `README`
+    style to RST format
+
+* 0.0.114 "ammirate <cesarano2607@gmail.com>"
+    MINOR 1bdc9030: correct title class in custom.css
+
+* 0.0.113 "ammirate <cesarano2607@gmail.com>"
+    MINOR 4bbc4305: missing space in README title
+
+* 0.0.112 "ammirate <cesarano2607@gmail.com>"
+    MINOR 37aeb4bc: changed LICENSE in LICENSE.txt
+
+* 0.0.111 "ammirate <cesarano2607@gmail.com>"
+    MINOR befd6d86: update documentation and related files
+
+* 0.0.110 "ammirate <cesarano2607@gmail.com>"
+    MINOR 815845ff: added default value to excluded key
+
+* 0.0.109 "ammirate <cesarano2607@gmail.com>"
+    MINOR d6bc9b03: added keywords in setup.py
+
+* 0.0.108 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 50b17ad8: added extra section to explain about custom css file usage
+
+* 0.0.107 "Ammirate <cesarano2607@gmail.com>"
+    MINOR e09aaba0: removed unused css class in custom.css
+
+* 0.0.106 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 6659ed26: added cli excluded-keyword option, as suggested in
+    1#pullrequestreview-29981764
+
+* 0.0.105 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 3d69a2e0: changed double quotes to single quotes
+
+* 0.0.104 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 9a6b56b8: renamed rst_util to rst_utils and removed unused related
+    files
+
+* 0.0.103 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 31d71afd: renamed project in jsonschema2rst
+
+* 0.0.102 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 1567c110: Continuing testing
+
+* 0.0.101 "Ammirate <cesarano2607@gmail.com>"
+    MINOR ec007edb: fixed nodes order when they belong to a  node
+
+* 0.0.100 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 18d73606: sorted imports
+
+* 0.0.99 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0ea2ab25: corrected typo in docstring
+
+* 0.0.98 "Ammirate <cesarano2607@gmail.com>"
+    MINOR ceeef400: removed testing statement in cli
+
+* 0.0.97 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0849bc81: improved regex for description refs
+
+* 0.0.96 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f752ac88: docstring updated
+
+* 0.0.95 "Ammirate <cesarano2607@gmail.com>"
+    MINOR ed93d44b: completed testing rst_util
+
+* 0.0.94 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 25746336: fix rst_util kv_field()
+
+* 0.0.93 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a5445633: made all code pep8 compliant
+
+* 0.0.92 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 67fd881c: applied Micha patch
+
+* 0.0.91 "Ammirate <cesarano2607@gmail.com>"
+    MINOR bf1a4e59: fixed regex for ref in description. Now absolute link are
+    not considered
+
+* 0.0.90 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f1742507: fix ref resolver in descriprion fields
+
+* 0.0.89 "Ammirate <cesarano2607@gmail.com>"
+    MINOR fb5b34f9: Correct tests after code refactor
+
+* 0.0.88 "Ammirate <cesarano2607@gmail.com>"
+    MINOR de255e7d: Fix: Use child's title when parent node has fake title.
+
+* 0.0.87 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 01bda7d1: key-value string printed only using kv_fiel()
+
+* 0.0.86 "Ammirate <cesarano2607@gmail.com>"
+    MINOR fe01fd34: Simplified resolver
+
+* 0.0.85 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f3eb81f5: improved extensions replacement in indexer
+
+* 0.0.84 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 7afb1524: Improved extension replacement in strings
+
+* 0.0.83 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 79e207dc: Refactored: lines are less than 80 characters
+
+* 0.0.82 "Ammirate <cesarano2607@gmail.com>"
+    MINOR cc3e8be1: Added regexp to solve references in description using json
+    pointer
+
+* 0.0.81 "Ammirate <cesarano2607@gmail.com>"
+    MINOR edf5922e: Implemented json pointer resolver for required.
+
+* 0.0.80 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 4f9ad67d: Continuing test_rst_util
+
+* 0.0.79 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 946008d2: Refactoring: aded json_pointer_util and moved all related
+    functions there
+
+* 0.0.78 "Ammirate <cesarano2607@gmail.com>"
+    MINOR edac7e41: improved robustness ensuring type string before split()
+
+* 0.0.77 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 2933d5a8: refactoring and improved docstrings for jsoin pointer
+    functions
+
+* 0.0.76 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 49aba139: Replaced ref_link function with the json_pointer one
+
+* 0.0.75 "Ammirate <cesarano2607@gmail.com>"
+    MINOR e71625fe: Test for rst_util. Some functions still to test
+
+* 0.0.74 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0c8e382c: removed testing statement
+
+* 0.0.73 "Ammirate <cesarano2607@gmail.com>"
+    MINOR b28ec5fb: removed wrong old import
+
+* 0.0.72 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 9c3fde0a: Improved index files generation process
+
+* 0.0.71 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 4c6b46d6: added  after  in json_pointer
+
+* 0.0.70 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 5f5676b0: Added more test to verify correctness of tree building
+    process
+
+* 0.0.69 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 2b265ca1: typos in comment
+
+* 0.0.68 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 8ba67f16: improved __str__
+
+* 0.0.67 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 6677a65e: Implemented JSON Pointers as unique link for sections
+
+* 0.0.66 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 1b3654c4: Resolved non-unique links
+
+* 0.0.65 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a0b25d65: added id field. Moved strip() outside unicode() in _init_
+
+* 0.0.64 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 5348c5a8: Fixed non-working properties links starting with '_'
+
+* 0.0.63 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 471b5056: Testing TreeNode __init__
+
+* 0.0.62 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 17e58fb2: added pytest to setup.py
+
+* 0.0.61 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 47d50e1c: Improved README file with more complete description, usage
+    and example
+
+* 0.0.60 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 781bf840: Changed ITEM value in according to
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r106182161
+
+* 0.0.59 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a6c94e0a: changed NL to NL2 in container function
+
+* 0.0.58 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a19a811c: removed unused empty_container function
+
+* 0.0.57 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 80f39f56: cleaned comment
+
+* 0.0.56 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 66c33608: removed sort_tree. its work has been incorporated in
+    sort_nodes (old sort_leaves)
+
+* 0.0.55 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 632a11b2: refactor to make entry_point working
+
+* 0.0.54 "Ammirate <cesarano2607@gmail.com>"
+    MINOR e586f267: fixed resource folder
+
+* 0.0.53 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 869d76df: refactor code: import rst_util and its functions
+
+* 0.0.52 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f2ed7244: reading blacklist in a better manner
+
+* 0.0.51 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 27cd655d: added project files AUTHORS, CHANGELOG, and MANIFEST.in
+
+* 0.0.50 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 59546812: Added entry point and changed readme
+
+* 0.0.49 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0a4feec6: refactor sorting_leaves and added docstring
+
+* 0.0.48 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 7315b0dd: refactor for improve_parent
+
+* 0.0.47 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 150b82f9: Improved ITEM constant string, as suggested in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105655570
+
+* 0.0.46 "Ammirate <cesarano2607@gmail.com>"
+    MINOR d16299a7: added empty new line at the end of files, following pip8
+
+* 0.0.45 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 49db5b99: Ordered imports
+
+* 0.0.44 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 60aa0a0a: removed unused import
+
+* 0.0.43 "Ammirate <cesarano2607@gmail.com>"
+    MINOR afe15cb4: allowd both json and yaml format. Provided basic output
+    info
+
+* 0.0.42 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 8ba9779d: removed useless content from rst header
+
+* 0.0.41 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0a236749: Improved python style: string concatenation replaced by
+    string format and join
+
+* 0.0.40 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 33739991: Improved python style for multiline strings, as suggested
+    in https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105375875
+
+* 0.0.39 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0d95aa67: Added some key to improve schema's elements ordering
+
+* 0.0.38 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 08e91137: Improved black list processing
+
+* 0.0.37 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 2573d610: removed repeated title in anyof items and friends,
+    https://github.com/inspirehep/yaml2rst/pull/1#issuecomment-286100656
+
+* 0.0.36 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 13e75b83: refactor: improved variable name in improved_parent
+
+* 0.0.35 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 3fe95286: Refined 'required' items leyout as restructured-text
+
+* 0.0.34 "Ammirate <cesarano2607@gmail.com>"
+    MINOR fdb9c0b3: external link fixed
+
+* 0.0.33 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 886e7038: simplified make_description,
+    https://github.com/inspirehep/yaml2rst/pull/1#issuecomment-286100656
+
+* 0.0.32 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a6bda092: fixed 'excluded_key.csv' reading operation
+
+* 0.0.31 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 08aeea4b: Raise error if input folder does not exist
+
+* 0.0.30 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 3fb9701f: Improved dict2tree docstring
+
+* 0.0.29 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 1cd6deb7: edited __eq__ method to make it more pythonic,
+    https://github.com/inspirehep/yaml2rst/pull/1/files#r105382874
+
+* 0.0.28 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 903e912b: changed TreeNode representation as subtree instead of
+    plain string,  in accordin to
+    https://github.com/inspirehep/yaml2rst/pull/1/files#r105388610
+
+* 0.0.27 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 1204ceb4: added inheritance from object to TreeNode class
+
+* 0.0.26 "Ammirate <cesarano2607@gmail.com>"
+    MINOR a1d24290: updated constants for anyof, allof, oneof, elements_allowed
+
+* 0.0.25 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 62d7587d: Improved pythonic style,
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105380561
+
+* 0.0.24 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0dbf59e7: removed unused 'indent' function
+
+* 0.0.23 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 56648078: Improved cli args, as suggested in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105374815
+
+* 0.0.22 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 91186d0b: fixed imports
+
+* 0.0.21 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 1d0ae972: Added code to make resource folder accessible when egg
+    deployed
+
+* 0.0.20 "Ammirate <cesarano2607@gmail.com>"
+    MINOR d367b140: Added __init__.py
+
+* 0.0.19 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 9a30cf3c: Added keargs to include static data
+
+* 0.0.18 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 13b1126c: Removed manually .idea files
+
+* 0.0.17 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 83438740: Added initial test script, wip
+
+* 0.0.16 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f6f169b6: Improved python style, referring to
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105378570
+
+* 0.0.15 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 4d6d9633: Removed wrong docstring.
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105372266
+
+* 0.0.14 "Ammirate <cesarano2607@gmail.com>"
+    MINOR c9d718c4: renamed filename in a more pythonic way, as suggested in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105373176
+
+* 0.0.13 "Ammirate <cesarano2607@gmail.com>"
+    MINOR d2a618a8: renamed iterator in a more proper way, as suggested in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105372464
+
+* 0.0.12 "Ammirate <cesarano2607@gmail.com>"
+    MINOR aa581bff: Refactored imports. 'yaml2rst' was used both for folder
+    and script, creating import conflicts.
+
+* 0.0.11 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 0dadeddd: removed .idea folder, as suggested in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105369311
+
+* 0.0.10 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 257dd56c: Removed wrong reference, as described in
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105369995
+
+* 0.0.9 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 80a02011: Added license on top and removed wrong code, referring to
+    https://github.com/inspirehep/yaml2rst/pull/1#discussion_r105370549
+
+* 0.0.8 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 42e6f0df: refactored docstring using Google style. Removed non used
+    resources.
+
+* 0.0.7 "Ammirate <cesarano2607@gmail.com>"
+    MINOR f02e1249: refactoring
+
+* 0.0.6 "Ammirate <cesarano2607@gmail.com>"
+    MINOR cf0a7dea: Section key fields now are semantically ordered
+
+* 0.0.5 "Ammirate <cesarano2607@gmail.com>"
+    MINOR cb983f6a: added black list. added description rst compatibility
+
+* 0.0.4 "Ammirate <cesarano2607@gmail.com>"
+    MINOR 9fa1db42: MVP
+
+* 0.0.3 "Antonio <cesarano2607@gmail.com>"
+    MINOR 488feddd: Initial commit
+
+* 0.0.2 "David Caro <david@dcaro.es>"
+    MINOR 3da16349: build: added travis boilerplate
+
+* 0.0.1 "David Caro <david@dcaro.es>"
+    MINOR 1aeceeee: Inital commit

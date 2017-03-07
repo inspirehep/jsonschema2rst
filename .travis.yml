@@ -1,0 +1,30 @@
+notifications:
+  email: false
+sudo: false
+language: python
+matrix:
+  fast_finish: true
+cache:
+- pip
+python:
+- '2.7'
+- '3.5'
+before_install:
+- travis_retry pip install --upgrade pip setuptools py coveralls
+
+install:
+- travis_retry pip install -e .[tests]
+- pip freeze
+script:
+- "./run-tests.sh"
+after_success:
+- coveralls
+deploy:
+  provider: pypi
+  user: inspirehep
+  distribution: sdist
+  password:
+    secure: gzJF08CKTvj8oRzK9nsbM3EyXwpKl2RfGUzzxQ6+5ehX67XJlpFbtVtIFXo4fz/+/1SiFtCYQSFMwQQyb5sN6IokvbS/ZUnflQIr3VMn4LssdCe4JYQTrTrI3duvmqJEAFxoDb/B7CQR+rWnS9yepF/6UZWFebj76TbX5Nba7ENQLpMw+WOuLNp72WLyxh/hD7dEies8nWmEHi1rPOyai6W9VLrbY+/841u8/9UZtxLkn4Zw5qGVPJeMg7Zau+VwTsusNtGqHoebWOnYxXG+FuJ3iuXpCDdp94DDibd9b1N0PRcz6USehAQIgRRsKSmydEEobCtLl4Pmib6YSlTUu/OFdn/reX3PwQUAekssWXu7BXaiLbtuGPHaIBNT71El4pZsmbNjjTD/sA5eyMwW/GqlqlwNuOfjXORCjn7CPmU+feEnL4qrfTDhYqWO6JzMYSEvGFXDMA2MkOBCXlxj/R8Qzpvmg0q+Hhm2emj4UuyH/ieyb4fsdATwp7SJ/ng2rYaU6PBRpTT0nbIR2oaug/+yfV5tkfAE33XRr2Z6f5dRDGhgsW3F/Qq/iRpqEr22QFee11c9VKTge25+ida38f0cpLKfgEAnqbfdoR/F2cALLV5d6K0AzjE1/bVFG8krn8w785qBwV0UQvuqVypYm1S+9He6SKTRU7swXrKoXqw=
+  on:
+    branch: master
+    python: '2.7'
