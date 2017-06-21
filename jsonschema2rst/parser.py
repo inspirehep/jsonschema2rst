@@ -93,8 +93,8 @@ def _traverse_bfs(node, traverse_func):
         The addition/concatenation of ``traverse_func`` results.
     """
     result = traverse_func(node)
-    leaves = filter(lambda child: child.is_leaf(), node.children)
-    inners = filter(lambda child: not child.is_leaf(), node.children)
+    leaves = [child for child in node.children if child.is_leaf()]
+    inners = [child for child in node.children if not child.is_leaf()]
 
     leaves = _sort_nodes(leaves, node.value)
     inners = _sort_nodes(inners, node.value)
