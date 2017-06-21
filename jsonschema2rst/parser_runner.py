@@ -99,7 +99,7 @@ def run_parser(input_path, output_path, excluded_key="uniqueItems,"
                     output = os.path.join(output_folder, _get_rst_name(name))
 
                     with open(output, 'wb') as rst_out:
-                        rst_out.write(rst_content.encode('utf-8'))
+                        rst_out.write(rst_content)
 
                 processed_files.append(abs_name)
                 print(abs_name.ljust(40) + 'OK')
