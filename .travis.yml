@@ -11,7 +11,6 @@ python:
 - '3.5'
 before_install:
 - travis_retry pip install --upgrade pip setuptools py coveralls
-
 install:
 - travis_retry pip install -e .[tests]
 - pip freeze
@@ -20,11 +19,12 @@ script:
 after_success:
 - coveralls
 deploy:
-  provider: pypi
-  user: inspirehep
-  distribution: sdist
-  password:
-    secure: gzJF08CKTvj8oRzK9nsbM3EyXwpKl2RfGUzzxQ6+5ehX67XJlpFbtVtIFXo4fz/+/1SiFtCYQSFMwQQyb5sN6IokvbS/ZUnflQIr3VMn4LssdCe4JYQTrTrI3duvmqJEAFxoDb/B7CQR+rWnS9yepF/6UZWFebj76TbX5Nba7ENQLpMw+WOuLNp72WLyxh/hD7dEies8nWmEHi1rPOyai6W9VLrbY+/841u8/9UZtxLkn4Zw5qGVPJeMg7Zau+VwTsusNtGqHoebWOnYxXG+FuJ3iuXpCDdp94DDibd9b1N0PRcz6USehAQIgRRsKSmydEEobCtLl4Pmib6YSlTUu/OFdn/reX3PwQUAekssWXu7BXaiLbtuGPHaIBNT71El4pZsmbNjjTD/sA5eyMwW/GqlqlwNuOfjXORCjn7CPmU+feEnL4qrfTDhYqWO6JzMYSEvGFXDMA2MkOBCXlxj/R8Qzpvmg0q+Hhm2emj4UuyH/ieyb4fsdATwp7SJ/ng2rYaU6PBRpTT0nbIR2oaug/+yfV5tkfAE33XRr2Z6f5dRDGhgsW3F/Qq/iRpqEr22QFee11c9VKTge25+ida38f0cpLKfgEAnqbfdoR/F2cALLV5d6K0AzjE1/bVFG8krn8w785qBwV0UQvuqVypYm1S+9He6SKTRU7swXrKoXqw=
-  on:
-    branch: master
-    python: '2.7'
+  matrix:
+  - provider: pypi
+    user: inspirehep
+    distribution: sdist
+    password:
+      secure: APR4ShTKDPWeMlHDBkKdhg0ZrU/DPA6uxt+damGBSNxKy/FPsOs3uKue5KdEIELWG4rudwtKQ41a86Eq9it7oediQ5zNnag5Wapy2gFR0+jTC7rSXarUPfwavPV+rLPpfrITj2pUmtBNYUtKRyq08J8Z4bSFmFJWZflJvB8rZ/MONG9/NybtggHQll5M4LfU2mcOU9XDOTPsgnUR7ku/9YlvcZxwXoWlwvavnkE6WgDESrQwKIholyg4P28DNRe0XpoaX/laVdFdFuzGl6H3r2iNLXyDKHTy243F5pTE/jA00bQkkk3/Po66kEvt8aht9mBlKSrSCKBL9fstVRWTKhQYKwXEZh28fFNlZmmyXPBx+4KTwrCkRPBjuKQpvARXW3+kmbfNPyBoRXWndVVcCz7kmszJF53L2akIO5thucMdbhsFHxt4EX6z5aZX0mK9RvpMZ1NwWF+wcP73/FJJNigyemUDPAbPeJNI7bd+mtLsuikpbQ2hxhpZ25YRF+io5ptMibJMOSLF/VokLacT+W2iGipJGnEs8rxyDCKjGjNxC8O/q3J5MQF2sQnrkjr8ZHGPTA83m3jqxzK7uGK5fMgu0dTxV706PDljGmSNfkHLr2i5i/EtlJ1pQyE90Kyt/IcAb6As4vesIYHbsQ1w23hhs77djXPQmkiZqQbZ7Os=
+    on:
+      branch: master
+      python: '2.7'
