@@ -40,9 +40,12 @@ from jsonschema2rst.rst_writer import (JSON_EXTENSION, RST_EXTENSION,
                                        YML_EXTENSION, change_extension)
 
 
-def run_parser(input_path, output_path, excluded_key="uniqueItems,"
-                                                     "additionalProperties,"
-                                                     "$schema"):
+def run_parser(
+    input_path,
+    output_path,
+    excluded_key="uniqueItems,additionalProperties,$schema",
+    yaml_only=False,
+):
     """
     This function copies the needed resources into the ``output_path``,
     runs the ``jsonschema2rst`` recursively on ``input_path`` parsing all yaml
@@ -84,7 +87,10 @@ def run_parser(input_path, output_path, excluded_key="uniqueItems,"
 
         for name in files:
 
-            if name.endswith(YML_EXTENSION) or name.endswith(JSON_EXTENSION):
+            if (
+                name.endswith(YML_EXTENSION) or
+                (not yaml_only and name.endswith(JSON_EXTENSION))
+            ):
 
                 # check if a file with same name has been already parsed
                 abs_name = change_extension(name, '')
