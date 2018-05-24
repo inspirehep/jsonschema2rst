@@ -281,3 +281,33 @@ def test_improve_parent_node_not_title():
 
     improve_parent('Great Title!', child)
     assert root.value != expected
+
+
+def test_search_in_parents_siblings_subtrees():
+    expected = TreeNode('Searched')
+
+    root = TreeNode('Root')
+    sibling_1 = TreeNode('Sibling 1', root)
+    searching_leaf = TreeNode('Searching', sibling_1)
+    sibling_2 = TreeNode('Sibling 2', root)
+    unrelated_leaf = TreeNode('Unrelated', sibling_2)
+    searched = TreeNode('Searched', sibling_2)
+
+    result = searching_leaf.search_in_parents_siblings_subtrees('Searched')
+
+    assert result == expected
+
+
+def test_search_in_parents_siblings_subtrees_returns_none():
+    expected = None
+
+    root = TreeNode('Root')
+    sibling_1 = TreeNode('Sibling 1', root)
+    searching_leaf = TreeNode('Searching', sibling_1)
+    sibling_2 = TreeNode('Sibling 2', root)
+    unrelated_leaf = TreeNode('Unrelated', sibling_2)
+    searched = TreeNode('Searched', sibling_2)
+
+    result = searching_leaf.search_in_parents_siblings_subtrees('Not there')
+
+    assert result == expected
