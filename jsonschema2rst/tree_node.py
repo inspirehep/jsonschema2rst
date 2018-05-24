@@ -27,6 +27,7 @@ from __future__ import (absolute_import, division, print_function,
 
 import os
 from collections import OrderedDict
+from copy import copy
 
 from six import string_types
 
@@ -201,7 +202,7 @@ class TreeNode(object):
                 ancestor = ancestor.parent
         return None
 
-    def search_in_siblings(self, value):
+    def search_in_parents_siblings_subtrees(self, value):
         """
         Search a node matching the given `value` in the subtrees nested in
         this node's siblings.
@@ -213,20 +214,19 @@ class TreeNode(object):
             ``TreeNode``: the first node matching the given value.
                 If no one is found, None.
         """
-        siblings = self.parent.parent.children \
+        siblings = copy(self.parent.parent.children) \
             if (self.parent and self.parent.parent) else []
 
         if self.parent in siblings:
             siblings.remove(self.parent)
 
         while siblings:
+            node = siblings.pop()
 
-            for node in siblings:
-                if node.value == value:
-                    return node
+            if node.value == value:
+                return node
 
-            for node in siblings:
-                siblings += node.children
+            siblings = node.children + siblings
 
         return None
 
@@ -243,7 +243,7 @@ class TreeNode(object):
              ``TreeNode``: the found node, if any, else None.
         """
         if required_parent:
-            return self.search_in_siblings(_PROPERTIES)
+            return self.search_in_parents_siblings_subtrees(_PROPERTIES)
         else:
             return self.get_ancestor(_PROPERTIES)
 
