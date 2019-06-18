@@ -39,12 +39,11 @@ tests_require = [
     "pytest-pep8>=1.0.6",
     "pytest>=3.0.3",
     "mock>=2.0.0",
+    'isort'
 ]
 
 install_requires = [
-    'pyyaml',
-    'autosemver',
-    'isort',
+    'pyyaml'
 ]
 
 
@@ -57,7 +56,7 @@ setup(
     license='GPLv2',
     keywords='jsonschema yaml rst parser documentation',
     packages=find_packages(),
-    install_requires=install_requires + tests_require,
+    install_requires=install_requires,
     tests_require=tests_require,
     long_description=readme,
     url=URL,
