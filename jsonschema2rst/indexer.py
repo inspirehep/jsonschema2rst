@@ -97,14 +97,13 @@ def create_master_index(root_path):
 
         rel_path = os.path.relpath(root, root_path)
 
-        if rel_path == '.':
-            # don't want to insert master index in itself
-            continue
-
         files.sort()
 
         for name in files:
-            if name == INDEX_FILE_NAME:
+            if "__pycache__" in rel_path:
+                continue
+
+            if (rel_path == ".") ^ (name == INDEX_FILE_NAME):
                 content += TAB \
                         + os.path.join(rel_path, change_extension(name, '')) \
                         + NL2
