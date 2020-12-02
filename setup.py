@@ -31,20 +31,20 @@ URL = 'https://github.com/inspirehep/jsonschema2rst'
 readme = open('README.rst').read()
 
 tests_require = [
-    'pytest',
     "coverage>=4.0",
-    "isort>=4.2.2",
+    "isort<5.0.0",
     "pytest-cache>=1.0",
     "pytest-cov>=1.8.0",
     "pytest-pep8>=1.0.6",
-    "pytest>=3.0.3",
+    "pytest<6.0.0",
     "mock>=2.0.0",
 ]
 
 install_requires = [
     'pyyaml',
     'autosemver==0.5.5',
-    'isort',
+    'isort<5.0.0',
+    'six',
 ]
 
 
