@@ -43,14 +43,13 @@ tests_require = [
 
 install_requires = [
     'pyyaml',
-    'autosemver',
+    'autosemver==0.5.5',
     'isort',
 ]
 
 
 setup(
     name='jsonschema2rst',
-    version='1.0',
     author='CERN',
     author_email='admin@inspirehep.net',
     description='Parser for yaml/json schemas to rst',
