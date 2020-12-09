@@ -24,7 +24,6 @@
 
 """jsonschema2rst and related tools bundle."""
 
-import pkg_resources
 from setuptools import find_packages, setup
 
 URL = 'https://github.com/inspirehep/jsonschema2rst'
@@ -47,6 +46,10 @@ install_requires = [
     'six',
 ]
 
+setup_requires = [
+    'autosemver==0.5.5',
+]
+
 
 setup(
     name='jsonschema2rst',
@@ -58,6 +61,7 @@ setup(
     packages=find_packages(),
     install_requires=install_requires + tests_require,
     tests_require=tests_require,
+    setup_requires=setup_requires,
     long_description=readme,
     url=URL,
     autosemver=True,
