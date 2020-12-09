@@ -60,7 +60,7 @@ setup(
     tests_require=tests_require,
     long_description=readme,
     url=URL,
-    autosemver={'bugtracker_url': URL + '/issues/'},
+    autosemver=True,
     package_data={'': ['CHANGELOG', 'AUTHORS', 'README.rst', 'resources/*']},
     include_package_data=True,
     entry_points={
