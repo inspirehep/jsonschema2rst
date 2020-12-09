@@ -1,0 +1,19 @@
+name: Run tests
+description: Run all required tests
+
+runs:
+  using: composite
+  steps:
+    - name: Run isort
+      shell: bash
+      run: isort -rc -c -df
+
+    - name: Run pytest
+      shell: bash
+      run: >
+        py.test
+        --pep8
+        --cov=jsonschema2rst
+        --cov-report=term-missing
+        tests
+        jsonschema2rst
