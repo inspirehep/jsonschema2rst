@@ -54,7 +54,10 @@ jobs:
           python-version: 3.x
 
       - name: Install python dependencies
-        uses: ./.github/actions/install-python-dependencies
+        run: |
+          pip3 install --user --upgrade pip
+          pip3 --no-cache-dir install --user setuptools wheel py coveralls
+          pip3 --no-cache-dir install --user -e .[tests]
 
       - name: Build package
         run: python setup.py sdist bdist_wheel
