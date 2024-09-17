@@ -40,7 +40,7 @@ tests_require = [
 ]
 
 install_requires = [
-    'pyyaml',
+    'pyyaml>=6.0,<7.0',
     'autosemver==0.5.5',
     'isort<5.0.0',
     'six',

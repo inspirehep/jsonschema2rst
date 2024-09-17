@@ -356,7 +356,7 @@ if __name__ == '__main__':
         temp.write(response.read())
 
     with open(filename) as temp:
-        schema = yaml.load(temp)
+        schema = yaml.full_load(temp)
         tree = TreeNode("Test_Hep_Schema")
         TreeNode.dict2tree(schema, tree)
         print(tree)

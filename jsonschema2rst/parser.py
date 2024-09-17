@@ -70,7 +70,7 @@ def schema2rst(schema_file, excluded_key):
         change_extension(schema_file.name, JSON_EXTENSION)))
 
     rst = RST_DIRECTIVES
-    TreeNode.dict2tree(yaml.load(schema_file), tree, excluded_key)
+    TreeNode.dict2tree(yaml.full_load(schema_file), tree, excluded_key)
     rst += _traverse_bfs(tree, _node2rst)
     return rst
 
