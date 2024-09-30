@@ -99,7 +99,7 @@ def run_parser(
 
                 file_name = os.path.join(root, name)
 
-                with open(file_name) as schema:
+                with open(file_name, encoding='utf-8') as schema:
                     rst_content = schema2rst(schema, excluded_key)
 
                     output = os.path.join(output_folder, _get_rst_name(name))
