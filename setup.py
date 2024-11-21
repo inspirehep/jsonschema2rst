@@ -41,8 +41,6 @@ tests_require = [
 
 install_requires = [
     'pyyaml>=6.0,<7.0',
-    'autosemver==0.5.5',
-    'isort<5.0.0',
     'six',
 ]
 
@@ -50,6 +48,9 @@ setup_requires = [
     'autosemver==0.5.5',
 ]
 
+extras_require = {
+    'tests': tests_require,
+}
 
 setup(
     name='jsonschema2rst',
@@ -59,9 +60,10 @@ setup(
     license='GPLv2',
     keywords='jsonschema yaml rst parser documentation',
     packages=find_packages(),
-    install_requires=install_requires + tests_require,
+    install_requires=install_requires,
     tests_require=tests_require,
     setup_requires=setup_requires,
+    extras_require=extras_require,
     long_description=readme,
     url=URL,
     autosemver=True,
