@@ -1,0 +1,15 @@
+name: Push Master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  python3_tests:
+    uses: ./.github/workflows/test-python-3.yml
+
+  bump_version:
+    needs: [python3_tests]
+    uses: ./.github/workflows/bump-and-publish.yml
+    secrets: inherit

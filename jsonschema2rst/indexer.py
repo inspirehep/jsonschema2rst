@@ -27,22 +27,18 @@ This module helps creating indexes contents and files for restructured-text
 parsed files..
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import os
 
 from jsonschema2rst.rst_utils import NL2, TAB, make_title
-from jsonschema2rst.rst_writer import (JSON_EXTENSION, NL, YML_EXTENSION,
-                                       change_extension)
+from jsonschema2rst.rst_writer import JSON_EXTENSION, NL, YML_EXTENSION, change_extension
 
-INDEX_FILE_NAME = 'index.rst'
+INDEX_FILE_NAME = "index.rst"
 
 
-INDEX_HEADER = '''
+INDEX_HEADER = """
 .. toctree::
 \t:titlesonly:
-'''
+"""
 
 
 MASTER_INDEX_TITLE = "Schemas Documentation"
@@ -65,12 +61,11 @@ def index(input_path):
     processed_files = []
 
     for file_name in sorted(os.listdir(input_path)):
-        if file_name.endswith(YML_EXTENSION) or \
-                file_name.endswith(JSON_EXTENSION):
+        if file_name.endswith(YML_EXTENSION) or file_name.endswith(JSON_EXTENSION):
             # remove the extension
-            abs_name = change_extension(file_name, '')
+            abs_name = change_extension(file_name, "")
             if abs_name not in processed_files:
-                content += NL + TAB + change_extension(file_name, '')
+                content += NL + TAB + change_extension(file_name, "")
                 processed_files.append(abs_name)
 
     return content
@@ -104,9 +99,7 @@ def create_master_index(root_path):
                 continue
 
             if (rel_path == ".") ^ (name == INDEX_FILE_NAME):
-                content += TAB \
-                        + os.path.join(rel_path, change_extension(name, '')) \
-                        + NL2
+                content += TAB + os.path.join(rel_path, change_extension(name, "")) + NL2
 
     write_index_file(root_path, content)
 
@@ -120,5 +113,5 @@ def write_index_file(out_path, content):
         out_path(string): the path were the index file will be created
         content(string): the file content to write down.
     """
-    with open(os.path.join(out_path, INDEX_FILE_NAME), 'w') as index_page:
+    with open(os.path.join(out_path, INDEX_FILE_NAME), "w") as index_page:
         index_page.write(content)

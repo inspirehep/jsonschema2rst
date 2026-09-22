@@ -22,27 +22,16 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import os
 from collections import OrderedDict
 from copy import copy
 
-from six import string_types
-
 _BLACK_LIST = []
 _ROOT = "Root"
-_NESTED_ELEMENT_FIELD = 'title'
-NESTED_ELEMENT_NAME = 'element'
-_NESTED_LIST_NAME = 'sub_list'
-_PROPERTIES = 'properties'
-
-# Python 2-3 compatibility
-try:
-    UNICODE_EXISTS = bool(type(unicode))
-except NameError:
-    unicode = str
+_NESTED_ELEMENT_FIELD = "title"
+NESTED_ELEMENT_NAME = "element"
+_NESTED_LIST_NAME = "sub_list"
+_PROPERTIES = "properties"
 
 
 class TreeNode(object):
@@ -57,7 +46,7 @@ class TreeNode(object):
 
     _ID = 0
 
-    def __init__(self, val='', parent=None):
+    def __init__(self, val="", parent=None):
         """
         Constructor.
 
@@ -70,7 +59,7 @@ class TreeNode(object):
             val (string): the node's value
             parent (``TreeNode``): the node's parent.
         """
-        self.value = unicode(val).strip()
+        self.value = str(val).strip()
         self.children = []
         self.parent = parent
         self.id = self.value
@@ -88,7 +77,7 @@ class TreeNode(object):
         Return:
             bool: True if the node has at least one child, else False
         """
-        return len(self.children) is 0
+        return len(self.children) == 0
 
     def __str__(self, level=0):
         ret = "\t" * level + repr(self.value) + "\n"
@@ -113,10 +102,11 @@ class TreeNode(object):
         if not isinstance(other, self.__class__):
             return False
 
-        if self.value == other.value and \
-                len(self.children) == len(other.children):
-            return all(child == other_child for child, other_child
-                       in zip(self.children, other.children))
+        if self.value == other.value and len(self.children) == len(other.children):
+            return all(
+                child == other_child
+                for child, other_child in zip(self.children, other.children, strict=False)
+            )
         else:
             return False
 
@@ -145,7 +135,7 @@ class TreeNode(object):
         return cls._ID
 
     @classmethod
-    def dict2tree(cls, dictionary, root_node, excluded_key=''):
+    def dict2tree(cls, dictionary, root_node, excluded_key=""):
         """
         Given a dictionary, this function recursively creates a full tree data
         structures that maps the given input. The ``root_node`` param is used
@@ -177,7 +167,7 @@ class TreeNode(object):
             root_node = TreeNode(_ROOT)
 
         global _BLACK_LIST
-        _BLACK_LIST = [key.strip() for key in excluded_key.split(',')]
+        _BLACK_LIST = [key.strip() for key in excluded_key.split(",")]
         dictionary = OrderedDict(sorted(dictionary.items()))
         _build_tree(dictionary, root_node)
 
@@ -214,8 +204,7 @@ class TreeNode(object):
             ``TreeNode``: the first node matching the given value.
                 If no one is found, None.
         """
-        siblings = copy(self.parent.parent.children) \
-            if (self.parent and self.parent.parent) else []
+        siblings = copy(self.parent.parent.children) if (self.parent and self.parent.parent) else []
 
         if self.parent in siblings:
             siblings.remove(self.parent)
@@ -232,15 +221,15 @@ class TreeNode(object):
 
     def relative_search(self, required_parent):
         """
-         This function search the closest parent or sibling matching
-         ``_PROPERTIES``. The research depends on ``required_parent``. If it
-         is True the node is searched among siblings, otherwise into ancestors.
+        This function search the closest parent or sibling matching
+        ``_PROPERTIES``. The research depends on ``required_parent``. If it
+        is True the node is searched among siblings, otherwise into ancestors.
 
-         Args:
-             required_parent(bool): flag used to search in siblings
+        Args:
+            required_parent(bool): flag used to search in siblings
 
-         Returns:
-             ``TreeNode``: the found node, if any, else None.
+        Returns:
+            ``TreeNode``: the found node, if any, else None.
         """
         if required_parent:
             return self.search_in_parents_siblings_subtrees(_PROPERTIES)
@@ -249,11 +238,8 @@ class TreeNode(object):
 
 
 def _build_tree(obj, node=None, parent_obj=None):
-
     if isinstance(obj, list):
-
         for index, item in enumerate(obj):
-
             if isinstance(item, dict):
                 _process_dict_item(item, node, index)
 
@@ -261,32 +247,25 @@ def _build_tree(obj, node=None, parent_obj=None):
                 _process_list_item(item, node, index)
 
             else:  # Create child node, implicitly appended itself to parent
-                TreeNode(unicode(item), node)
+                TreeNode(str(item), node)
 
-    elif isinstance(obj, bool) \
-            or isinstance(obj, int) \
-            or isinstance(obj, float):
+    elif isinstance(obj, (bool, int, float)):
         # this is a leaf node, append this value to its parent's value
-        node.value += ': ' + unicode(obj)
+        node.value += ": " + str(obj)
 
-    elif isinstance(obj, string_types):
-
+    elif isinstance(obj, str):
         if obj in _BLACK_LIST:
             return
 
         res = parent_obj.get(obj, None)  # a string can be a dictionary key
 
         if res is None:  # not a dictionary
-
             if not improve_parent(obj, node):
-                node.value += ': ' + unicode(obj)
+                node.value += ": " + str(obj)
 
         else:  # a dictionary
-
-            if isinstance(res, string_types) or isinstance(res, bool) \
-                    or isinstance(res, int) or isinstance(res, float):
-
-                node_value = unicode(obj) + ': ' + unicode(res)
+            if isinstance(res, (str, bool, int, float)):
+                node_value = str(obj) + ": " + str(res)
                 # create a leaf node, connected to the parent one
                 TreeNode(node_value, node)
 
@@ -296,7 +275,6 @@ def _build_tree(obj, node=None, parent_obj=None):
 
     else:
         for prop in obj:
-
             if isinstance(obj[prop], list):
                 child = TreeNode(prop, node)
                 _build_tree(obj[prop], child, prop)
@@ -319,8 +297,7 @@ def _process_list_item(item, parent, intermediate_value=NESTED_ELEMENT_NAME):
 def _process_dict_item(item, parent, intermediate_value=NESTED_ELEMENT_NAME):
     # create an intermediate node and append all key children nodes to it
     intermediate = TreeNode(intermediate_value, parent)
-    for key in item.keys():
-
+    for key in item:
         if key in _BLACK_LIST:
             continue
 
@@ -332,27 +309,30 @@ def improve_parent(obj, node):
     # if a previously nested element had no name and a default one has been
     # assigned to it (e.g. NESTED_ELEMENT_NAME), then the title is used to
     # give a more meaningful name.
-    if node.value == _NESTED_ELEMENT_FIELD:
-
-        if node.parent is not None and \
-                (node.parent.value == NESTED_ELEMENT_NAME or
-                 node.parent.value.isdigit()):
-            node.parent.value = unicode(obj)
-            node.value = ""
-            return True
+    if (
+        node.value == _NESTED_ELEMENT_FIELD
+        and node.parent is not None
+        and (node.parent.value == NESTED_ELEMENT_NAME or node.parent.value.isdigit())
+    ):
+        node.parent.value = str(obj)
+        node.value = ""
+        return True
     return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    import urllib.request
+
     import yaml
-    import urllib2
 
     filename = "temp_file"
-    link = "https://raw.githubusercontent.com/inspirehep/inspire-schemas/" \
-           "master/inspire_schemas/records/elements/id.yml"
-    response = urllib2.urlopen(link)
+    link = (
+        "https://raw.githubusercontent.com/inspirehep/inspire-schemas/"
+        "master/inspire_schemas/records/elements/id.yml"
+    )
+    response = urllib.request.urlopen(link)
 
-    with open(filename, 'w') as temp:
+    with open(filename, "wb") as temp:
         temp.write(response.read())
 
     with open(filename) as temp:
