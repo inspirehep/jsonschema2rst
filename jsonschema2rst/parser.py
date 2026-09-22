@@ -27,9 +27,6 @@ This module allows to parse json and yaml schemas, generating restructured-text
 content to document it.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import os
 
 import yaml
@@ -46,7 +43,7 @@ SORTING_ORDER = [
     "minimum",
     "maximum",
     "pattern",
-    "required"
+    "required",
 ]
 
 
@@ -66,8 +63,7 @@ def schema2rst(schema_file, excluded_key):
     Returns:
         string: a restructured-text string representing ``schema_file``
     """
-    tree = TreeNode(os.path.basename(
-        change_extension(schema_file.name, JSON_EXTENSION)))
+    tree = TreeNode(os.path.basename(change_extension(schema_file.name, JSON_EXTENSION)))
 
     rst = RST_DIRECTIVES
     TreeNode.dict2tree(yaml.full_load(schema_file), tree, excluded_key)
@@ -108,7 +104,7 @@ def _traverse_bfs(node, traverse_func):
     return result
 
 
-def _sort_nodes(leaves, parent_val=''):
+def _sort_nodes(leaves, parent_val=""):
     """
     Return a list of nodes ordered in according to the ``SORTING_ORDER``
     elements' index, if ``parent_val`` is not `properties`. Elements with a
@@ -132,7 +128,7 @@ def _sort_nodes(leaves, parent_val=''):
         the given list sorted in according to ``SORTING_ORDER``
     """
     priority = []
-    if parent_val != 'properties':
+    if parent_val != "properties":
         for key in SORTING_ORDER:
             for leaf in leaves:
                 if key in leaf.value:

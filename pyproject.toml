@@ -1,0 +1,32 @@
+[project]
+name = "jsonschema2rst"
+version = "0.1.7"
+description = "Parser for yaml/json schemas to rst"
+authors = [
+    { name = "CERN", email = "admin@inspirehep.net" },
+]
+license = "GPL-2.0-or-later"
+readme = "README.md"
+keywords = ["jsonschema", "yaml", "rst", "parser", "documentation"]
+requires-python = ">=3.11,<4"
+dependencies = [
+    "pyyaml>=6.0,<7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/inspirehep/jsonschema2rst"
+
+[project.scripts]
+jsonschema2rst = "jsonschema2rst.parser_runner:cli"
+
+[tool.poetry]
+packages = [{ include = "jsonschema2rst" }]
+
+[tool.poetry.group.tests.dependencies]
+coverage = ">=7.0"
+pytest = ">=8.0"
+pytest-cov = ">=5.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"

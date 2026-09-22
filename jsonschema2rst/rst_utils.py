@@ -22,46 +22,43 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from jsonschema2rst.json_pointer_util import get_json_pointer
 
 ADORNMENT_SYMBOL = {
-    0: '=',
-    1: '*',
-    2: '+',
-    3: '-',
-    4: '#',
-    5: '~',
-    6: '>',
-    7: '<',
-    8: '.',
+    0: "=",
+    1: "*",
+    2: "+",
+    3: "-",
+    4: "#",
+    5: "~",
+    6: ">",
+    7: "<",
+    8: ".",
 }
 
 
-NL = '\n'
+NL = "\n"
 NL2 = 2 * NL
-BLANK_SPACE = ' '
-TAB = '\t'
+BLANK_SPACE = " "
+TAB = "\t"
 
-RST_DIRECTIVES = ''' '''
+RST_DIRECTIVES = """ """
 # \n.. contents:: Table of Contents'''
 # .. section-numbering::'''
 
 
 def emphasize(val):
-    return '*{}* '.format(val)
+    return "*{}* ".format(val)
 
 
 def explicit_link(link, link_text=""):
     if not link_text:
         link_text = link
-    return '`{} <{}>`_'.format(link_text, link)
+    return "`{} <{}>`_".format(link_text, link)
 
 
 def bold(val):
-    return '**{}** '.format(val)
+    return "**{}** ".format(val)
 
 
 def literal(val):
@@ -86,22 +83,22 @@ def literal(val):
 
 
 def _literal(val):
-    return '``{}``'.format(val.strip())
+    return "``{}``".format(val.strip())
 
 
 def kv_field(k, v):
     v = str(v)
-    if '`' not in v:
+    if "`" not in v:
         v = literal(v)
-    return ':{}: {}'.format(k, v)
+    return ":{}: {}".format(k, v)
 
 
 def bullet(val):
-    return '- {}'.format(val)
+    return "- {}".format(val)
 
 
 def section_link(node):
-    return(NL + '.. _{}:' + NL2).format(get_json_pointer(node))
+    return (NL + ".. _{}:" + NL2).format(get_json_pointer(node))
 
 
 def line(level, value):
@@ -111,10 +108,10 @@ def line(level, value):
     return char * len(value)
 
 
-def container(value, css=''):
+def container(value, css=""):
     if not value:
         raise TypeError("Error: Can not create a container without content.")
-    return '.. container:: {}\n\n {}'.format(css, value)
+    return ".. container:: {}\n\n {}".format(css, value)
 
 
 def make_title(value, level):

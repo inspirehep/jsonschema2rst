@@ -27,22 +27,24 @@ This module defines methods and rules used to parse a ``TreeNode`` to
 restructured-text strings.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import os
 import re
 
-from jsonschema2rst.json_pointer_util import *
-from jsonschema2rst.rst_utils import *
+from jsonschema2rst.json_pointer_util import (
+    get_json_pointer,
+    ref2json_pointer,
+    resolver,
+    split_key_val,
+)
+from jsonschema2rst.rst_utils import NL, bold, bullet, container, kv_field, make_title, section_link
 
-PROPERTIES = bold('Properties:')
-ANY_OF = 'May satisfy *any* of the following definitions:'
-ALL_OF = 'Must satisfy *all* of the following definitions:'
-ONE_OF = 'Must satisfy *exactly one* of the following definitions:'
-ENUM = bold('Allowed values:')
+PROPERTIES = bold("Properties:")
+ANY_OF = "May satisfy *any* of the following definitions:"
+ALL_OF = "Must satisfy *all* of the following definitions:"
+ONE_OF = "Must satisfy *exactly one* of the following definitions:"
+ENUM = bold("Allowed values:")
 ITEMS = "Every element of {} is:"
-REQUIRED = 'Required'
+REQUIRED = "Required"
 
 
 CSS_SECT_TITLE = "section-title"
@@ -50,49 +52,48 @@ CSS_TITLE = "title"
 CSS_SUB_TITLE = "sub-title"
 
 
-YML_EXTENSION = '.yml'
-JSON_EXTENSION = '.json'
-RST_EXTENSION = '.rst'
-HTML_EXTENSION = '.html'
+YML_EXTENSION = ".yml"
+JSON_EXTENSION = ".json"
+RST_EXTENSION = ".rst"
+HTML_EXTENSION = ".html"
 
 
 SECTION_REPLACEMENT = {
-    'items': lambda node: val2parent(node),
+    "items": lambda node: val2parent(node),
 }
 
 # this dict contains all nodes that have to be processed using their children
 TO_REMOVE = {
-    'properties': lambda node: PROPERTIES + get_links(node.children),
-    'anyOf': lambda node: ANY_OF,
-    'allOf': lambda node: ALL_OF,
-    'oneOf': lambda node: ONE_OF,
-    'enum': lambda node: ENUM + NL + get_enums(node),    # create a bullet list
-    'required': lambda node: kv_field(REQUIRED, get_required(node)),
+    "properties": lambda node: PROPERTIES + get_links(node.children),
+    "anyOf": lambda node: ANY_OF,
+    "allOf": lambda node: ALL_OF,
+    "oneOf": lambda node: ONE_OF,
+    "enum": lambda node: ENUM + NL + get_enums(node),  # create a bullet list
+    "required": lambda node: kv_field(REQUIRED, get_required(node)),
 }
 
 # dict of all nodes whose value, in [key, value] entry, has to be changed
 TO_PROCESS = {
-    '$ref': lambda node: kv_field('Reference', ref2json_pointer(node.value)),
-    'title': lambda node: get_title(node),
-    'description': lambda node: make_description(node),
-
+    "$ref": lambda node: kv_field("Reference", ref2json_pointer(node.value)),
+    "title": lambda node: get_title(node),
+    "description": lambda node: make_description(node),
 }
 
 # dict of all nodes whose key, in [key, value] entry, has to be replaced
 TO_REPLACE = {
-    'additionalProperties': 'Additional properties allowed',
-    '$schema': 'Schema',
-    '$ref': 'Reference',
-    'uniqueItems': 'Unique Items',
-    'True': 'Yes',
-    'False': 'No',
+    "additionalProperties": "Additional properties allowed",
+    "$schema": "Schema",
+    "$ref": "Reference",
+    "uniqueItems": "Unique Items",
+    "True": "Yes",
+    "False": "No",
 }
 
 
-TO_COLLAPSE = ['items']
+TO_COLLAPSE = ["items"]
 
 
-_REF = ':ref:'
+_REF = ":ref:"
 # does not match absolute ref link e.g. :ref:'filename#/path/to/prop'
 ref_pattern = re.compile(r":ref:`[^#`]*`")
 
@@ -109,11 +110,10 @@ def restify(node):
         string: the node's value in restructured-text format. Note that value
             can be wrapped by some RST constructs.
     """
-    if ':' in node.value:           # value has to be printed as "key: val"
-
+    if ":" in node.value:  # value has to be printed as "key: val"
         key, val = split_key_val(node.value)
 
-        if key in TO_PROCESS.keys():
+        if key in TO_PROCESS:
             return TO_PROCESS[key](node)
 
         if key in TO_REPLACE:
@@ -162,7 +162,7 @@ def section_title(node):
 
     if sect_title in SECTION_REPLACEMENT:
         sect_title = SECTION_REPLACEMENT(node)
-    sect_title = change_extension(sect_title, '')
+    sect_title = change_extension(sect_title, "")
     return make_title(sect_title, node.lvl)
 
 
@@ -181,8 +181,8 @@ def make_description(node):
     matches = ref_pattern.findall(description)
 
     for m in matches:
-        ref = _REF + '`'
-        search_key = m[len(ref):len(m) - 1]  # remove ":ref:`" and the last "`"
+        ref = _REF + "`"
+        search_key = m[len(ref) : len(m) - 1]  # remove ":ref:`" and the last "`"
 
         working_ref = resolver(node, key=search_key)
         description = description.replace(m, working_ref)
@@ -201,8 +201,12 @@ def get_links(node_list):
     Return:
         string: a csv string containing rst formatted links
     """
-    return ', '.join([":ref:`{}`".format(get_json_pointer(node))
-                      for node in sorted(node_list, key=lambda n:n.value)])
+    return ", ".join(
+        [
+            ":ref:`{}`".format(get_json_pointer(node))
+            for node in sorted(node_list, key=lambda n: n.value)
+        ]
+    )
 
 
 def get_enums(node):
@@ -222,7 +226,7 @@ def get_enums(node):
         string: a rst formatted bullet list
     """
     bullet_list = NL.join([bullet(child.value) for child in node.children])
-    node.children = []      # children will not be processed again
+    node.children = []  # children will not be processed again
     return NL + bullet_list
 
 
@@ -241,8 +245,7 @@ def get_required(node):
     Return:
         string: a formatted string listing all children' required values
      """
-    required_list = ', '.join([resolver(child, True)
-                               for child in node.children])
+    required_list = ", ".join([resolver(child, True) for child in node.children])
 
     node.children = []  # children will not be processed again
     return required_list

@@ -22,31 +22,28 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from jsonschema2rst.rst_writer import change_extension
 
 
 def test_change_extension():
-    expected = 'foobar.yml'
-    result = change_extension('foobar.json', '.yml')
+    expected = "foobar.yml"
+    result = change_extension("foobar.json", ".yml")
     assert result == expected
 
 
 def test_change_extension_harder():
-    expected = 'foobar.yml.yml'
-    result = change_extension('foobar.yml.json', '.yml')
+    expected = "foobar.yml.yml"
+    result = change_extension("foobar.yml.json", ".yml")
     assert result == expected
 
 
 def test_change_extension_remove_ext():
-    expected = 'foobar'
-    result = change_extension('foobar.txt', '')
+    expected = "foobar"
+    result = change_extension("foobar.txt", "")
     assert result == expected
 
 
 def test_change_extension_no_ext():
-    expected = 'foobar.txt'
-    result = change_extension('foobar', '.txt')
+    expected = "foobar.txt"
+    result = change_extension("foobar", ".txt")
     assert result == expected

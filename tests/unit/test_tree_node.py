@@ -22,9 +22,6 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from jsonschema2rst.tree_node import TreeNode, improve_parent
 
 
@@ -47,35 +44,35 @@ def test_init_with_int():
 
 
 def test_init_with_none():
-    expected = 'None'
+    expected = "None"
     result = TreeNode(None).value
 
     assert result == expected
 
 
 def test_init_with_integer():
-    expected = '1'
+    expected = "1"
     result = TreeNode(1).value
 
     assert result == expected
 
 
 def test_init_without_val():
-    expected = ''
+    expected = ""
     result = TreeNode().value
 
     assert result == expected
 
 
 def test_is_leaf_true():
-    leaf = TreeNode('leaf')
+    leaf = TreeNode("leaf")
 
     assert leaf.is_leaf() is True
 
 
 def test_is_leaf_false():
-    parent = TreeNode('inner')
-    TreeNode('leaf', parent)
+    parent = TreeNode("inner")
+    TreeNode("leaf", parent)
 
     assert parent.is_leaf() is False
 
@@ -86,26 +83,26 @@ def test_str():
 
 def test_eq_true():
     tree1 = TreeNode(1)
-    sub_tree_1_1 = TreeNode(2, tree1)
-    sub_tree_1_2 = TreeNode(3, tree1)
+    TreeNode(2, tree1)
+    TreeNode(3, tree1)
 
     tree2 = TreeNode(1)
-    sub_tree_2_1 = TreeNode(2, tree2)
-    sub_tree_2_2 = TreeNode(3, tree2)
+    TreeNode(2, tree2)
+    TreeNode(3, tree2)
 
     assert tree1 == tree2
 
 
 def test_eq_false():
     tree1 = TreeNode(1)
-    sub_tree_1_1 = TreeNode(2, tree1)
-    sub_tree_1_2 = TreeNode(4, tree1)
+    TreeNode(2, tree1)
+    TreeNode(4, tree1)
 
     tree2 = TreeNode(1)
-    sub_tree_2_1 = TreeNode(2, tree2)
-    sub_tree_2_2 = TreeNode(3, tree2)
+    TreeNode(2, tree2)
+    TreeNode(3, tree2)
 
-    assert not tree1 == tree2
+    assert tree1 != tree2
 
 
 def test_ancestors_empty_list_expected():
@@ -131,37 +128,34 @@ def test_ancestors():
 def test_next_id():
     expected = [1, 2, 3]
 
-    TreeNode._ID = 0    # reset the id counter
+    TreeNode._ID = 0  # reset the id counter
     result = []
-    for i in range(3):
+    for _i in range(3):
         result.append(TreeNode._next_id())
 
     assert result == expected
 
 
 def test_dict2tree_none_dict_gives_just_a_node():
-    expected = TreeNode('Root')
+    expected = TreeNode("Root")
     result = TreeNode.dict2tree(None, None)
 
     assert result == expected
 
 
 def test_dict2tree_none_parent_gives_tree_with_standard_root_value():
-    expected = TreeNode('Root')
+    expected = TreeNode("Root")
     result = TreeNode.dict2tree({}, None)
 
     assert result == expected
 
 
 def test_dict2tree_with_none_input_on_two_entries_gives_tree_with_two_child():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('value1: foo', expected)
-    child_2 = TreeNode('value2: bar', expected)
+    expected = TreeNode("Root")
+    TreeNode("value1: foo", expected)
+    TreeNode("value2: bar", expected)
 
-    dictionary = {
-        'value1': 'foo',
-        'value2': 'bar'
-    }
+    dictionary = {"value1": "foo", "value2": "bar"}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -170,13 +164,10 @@ def test_dict2tree_with_none_input_on_two_entries_gives_tree_with_two_child():
 
 def test_dict2tree_two_entries_appends_two_child_to_given_tree():
     expected = TreeNode()
-    child_1 = TreeNode('value1: foo', expected)
-    child_2 = TreeNode('value2: bar', expected)
+    TreeNode("value1: foo", expected)
+    TreeNode("value2: bar", expected)
 
-    dictionary = {
-        'value1': 'foo',
-        'value2': 'bar'
-    }
+    dictionary = {"value1": "foo", "value2": "bar"}
 
     result = TreeNode()
     result = TreeNode.dict2tree(dictionary, result)
@@ -185,14 +176,11 @@ def test_dict2tree_two_entries_appends_two_child_to_given_tree():
 
 
 def test_dict2tree_simple_dict():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('value1: foo', expected)
-    child_2 = TreeNode('value2: bar', expected)
+    expected = TreeNode("Root")
+    TreeNode("value1: foo", expected)
+    TreeNode("value2: bar", expected)
 
-    dictionary = {
-        'value1': 'foo',
-        'value2': 'bar'
-    }
+    dictionary = {"value1": "foo", "value2": "bar"}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -200,14 +188,11 @@ def test_dict2tree_simple_dict():
 
 
 def test_dict2tree_simple_dict_with_integers():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('value1: 1', expected)
-    child_2 = TreeNode('value2: 2', expected)
+    expected = TreeNode("Root")
+    TreeNode("value1: 1", expected)
+    TreeNode("value2: 2", expected)
 
-    dictionary = {
-        'value1': 1,
-        'value2': 2
-    }
+    dictionary = {"value1": 1, "value2": 2}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -215,14 +200,12 @@ def test_dict2tree_simple_dict_with_integers():
 
 
 def test_dict2tree_dict_with_list():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('list', expected)
+    expected = TreeNode("Root")
+    child_1 = TreeNode("list", expected)
     child_intermediate = TreeNode(0, child_1)
-    child_1_1 = TreeNode('value: foo', child_intermediate)
+    TreeNode("value: foo", child_intermediate)
 
-    dictionary = {
-        'list': [{'value': 'foo'}]
-    }
+    dictionary = {"list": [{"value": "foo"}]}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -230,14 +213,12 @@ def test_dict2tree_dict_with_list():
 
 
 def test_dict2tree_list_of_list():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('list', expected)
+    expected = TreeNode("Root")
+    child_1 = TreeNode("list", expected)
     child_intermediate = TreeNode(0, child_1)
-    child_1_1 = TreeNode('value: foo', child_intermediate)
+    TreeNode("value: foo", child_intermediate)
 
-    dictionary = {
-        'list': [[{'value': 'foo'}]]
-    }
+    dictionary = {"list": [[{"value": "foo"}]]}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -245,18 +226,12 @@ def test_dict2tree_list_of_list():
 
 
 def test_dict2tree_dict_with_dict():
-    expected = TreeNode('Root')
-    child_1 = TreeNode('dict1', expected)
-    child_2 = TreeNode('dict2', child_1)
-    child_3 = TreeNode('value: foo', child_2)
+    expected = TreeNode("Root")
+    child_1 = TreeNode("dict1", expected)
+    child_2 = TreeNode("dict2", child_1)
+    TreeNode("value: foo", child_2)
 
-    dictionary = {
-        'dict1': {
-            'dict2': {
-                'value': 'foo'
-            }
-        }
-    }
+    dictionary = {"dict1": {"dict2": {"value": "foo"}}}
 
     result = TreeNode.dict2tree(dictionary, None)
 
@@ -267,33 +242,33 @@ def test_improve_parent_node_title():
     expected = "Great Title!"
 
     root = TreeNode(0)
-    child = TreeNode('title', root)
+    child = TreeNode("title", root)
 
-    improve_parent('Great Title!', child)
+    improve_parent("Great Title!", child)
     assert root.value == expected
 
 
 def test_improve_parent_node_not_title():
     expected = "Great Title!"
 
-    root = TreeNode('something')
-    child = TreeNode('title', root)
+    root = TreeNode("something")
+    child = TreeNode("title", root)
 
-    improve_parent('Great Title!', child)
+    improve_parent("Great Title!", child)
     assert root.value != expected
 
 
 def test_search_in_parents_siblings_subtrees():
-    expected = TreeNode('Searched')
+    expected = TreeNode("Searched")
 
-    root = TreeNode('Root')
-    sibling_1 = TreeNode('Sibling 1', root)
-    searching_leaf = TreeNode('Searching', sibling_1)
-    sibling_2 = TreeNode('Sibling 2', root)
-    unrelated_leaf = TreeNode('Unrelated', sibling_2)
-    searched = TreeNode('Searched', sibling_2)
+    root = TreeNode("Root")
+    sibling_1 = TreeNode("Sibling 1", root)
+    searching_leaf = TreeNode("Searching", sibling_1)
+    sibling_2 = TreeNode("Sibling 2", root)
+    TreeNode("Unrelated", sibling_2)
+    TreeNode("Searched", sibling_2)
 
-    result = searching_leaf.search_in_parents_siblings_subtrees('Searched')
+    result = searching_leaf.search_in_parents_siblings_subtrees("Searched")
 
     assert result == expected
 
@@ -301,13 +276,13 @@ def test_search_in_parents_siblings_subtrees():
 def test_search_in_parents_siblings_subtrees_returns_none():
     expected = None
 
-    root = TreeNode('Root')
-    sibling_1 = TreeNode('Sibling 1', root)
-    searching_leaf = TreeNode('Searching', sibling_1)
-    sibling_2 = TreeNode('Sibling 2', root)
-    unrelated_leaf = TreeNode('Unrelated', sibling_2)
-    searched = TreeNode('Searched', sibling_2)
+    root = TreeNode("Root")
+    sibling_1 = TreeNode("Sibling 1", root)
+    searching_leaf = TreeNode("Searching", sibling_1)
+    sibling_2 = TreeNode("Sibling 2", root)
+    TreeNode("Unrelated", sibling_2)
+    TreeNode("Searched", sibling_2)
 
-    result = searching_leaf.search_in_parents_siblings_subtrees('Not there')
+    result = searching_leaf.search_in_parents_siblings_subtrees("Not there")
 
     assert result == expected

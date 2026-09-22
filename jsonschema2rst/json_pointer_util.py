@@ -22,16 +22,12 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-
 """
 This module defines methods and rules used to parse a ``TreeNode`` to
 restructured-text strings.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
-_REFS = ['$ref', ':ref:']
+_REFS = ["$ref", ":ref:"]
 
 
 def get_json_pointer(node):
@@ -49,13 +45,13 @@ def get_json_pointer(node):
     ancestors = node.ancestors()
     if ancestors:
         root = ancestors.pop(0)
-        ancestors_path = ''
+        ancestors_path = ""
 
         if ancestors:
-            ancestors_path = '/' + '/'.join([n.id for n in ancestors])
+            ancestors_path = "/" + "/".join([n.id for n in ancestors])
 
-        return '{}#{}/{}'.format(root.value, ancestors_path, node.id)
-    return '{}#/'.format(node.id)
+        return "{}#{}/{}".format(root.value, ancestors_path, node.id)
+    return "{}#/".format(node.id)
 
 
 def ref2json_pointer(value):
@@ -79,12 +75,13 @@ def ref2json_pointer(value):
     """
     # check if `$ref` or `:ref:` are in the string
     if split_key_val(value)[0] not in _REFS:
-        raise ValueError('Expected input containing a :ref: or $ref value. '
-                         'Instead, got {}'.format(value))
+        raise ValueError(
+            "Expected input containing a :ref: or $ref value. " "Instead, got {}".format(value)
+        )
 
     value = split_key_val(value)[1]
-    value = value.split('/')[-1]
-    return ':ref:`{}#/`'.format(value)
+    value = value.split("/")[-1]
+    return ":ref:`{}#/`".format(value)
 
 
 def resolver(node, required_item=False, key=None):
@@ -114,10 +111,9 @@ def resolver(node, required_item=False, key=None):
     relative_node = node.relative_search(required_item)
 
     if relative_node:
-        return ':ref:`{}`'.format(get_json_pointer(relative_node) +
-                                  '/' + search_by)
+        return ":ref:`{}`".format(get_json_pointer(relative_node) + "/" + search_by)
     else:
-        return ':ref:`{}`'.format(search_by)
+        return ":ref:`{}`".format(search_by)
 
 
 def split_key_val(custom_string, separator=": "):
@@ -136,5 +132,5 @@ def split_key_val(custom_string, separator=": "):
     start_index = custom_string.index(separator)
 
     # substring starting after ': ' (blank space included)
-    val = custom_string[start_index + 2:]
+    val = custom_string[start_index + 2 :]
     return key, val

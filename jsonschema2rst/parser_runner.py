@@ -27,17 +27,13 @@ This module lets you execute ``jsonschema2rst`` parser recursively on a given
 folder.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import argparse
 import os
 import sys
 
 from jsonschema2rst.indexer import create_master_index, index, write_index_file
 from jsonschema2rst.parser import schema2rst
-from jsonschema2rst.rst_writer import (JSON_EXTENSION, RST_EXTENSION,
-                                       YML_EXTENSION, change_extension)
+from jsonschema2rst.rst_writer import JSON_EXTENSION, RST_EXTENSION, YML_EXTENSION, change_extension
 
 
 def run_parser(
@@ -66,7 +62,7 @@ def run_parser(
     """
 
     if not os.path.exists(input_path):
-        raise IOError('Wrong path: {}. Program will exit'.format(input_path))
+        raise IOError("Wrong path: {}. Program will exit".format(input_path))
 
     output_path = os.path.abspath(output_path)
     input_files = os.walk(input_path)
@@ -86,14 +82,9 @@ def run_parser(
         write_index_file(output_folder, index_content)
 
         for name in files:
-
-            if (
-                name.endswith(YML_EXTENSION) or
-                (not yaml_only and name.endswith(JSON_EXTENSION))
-            ):
-
+            if name.endswith(YML_EXTENSION) or (not yaml_only and name.endswith(JSON_EXTENSION)):
                 # check if a file with same name has been already parsed
-                abs_name = change_extension(name, '')
+                abs_name = change_extension(name, "")
                 if abs_name in processed_files:
                     continue
 
@@ -104,14 +95,14 @@ def run_parser(
 
                     output = os.path.join(output_folder, _get_rst_name(name))
 
-                    with open(output, 'wb') as rst_out:
-                        rst_out.write(rst_content.encode('utf-8'))
+                    with open(output, "wb") as rst_out:
+                        rst_out.write(rst_content.encode("utf-8"))
 
                 processed_files.append(abs_name)
-                print(abs_name.ljust(40) + 'OK')
+                print(abs_name.ljust(40) + "OK")
 
     create_master_index(output_path)
-    print('Index created.\n')
+    print("Index created.\n")
 
 
 def _get_rst_name(name):
@@ -124,24 +115,20 @@ def _get_output_folder(out_dir, input_root, current_path):
 
 
 def cli(arguments=None):
-
     cli_parser = argparse.ArgumentParser(description=run_parser.__doc__)
 
-    cli_parser.add_argument('schemas_folder',
-                            help='The folder where schemas are placed.')
+    cli_parser.add_argument("schemas_folder", help="The folder where schemas are placed.")
 
-    cli_parser.add_argument('rst_output_folder',
-                            help='The folder where RST files will be written.')
+    cli_parser.add_argument("rst_output_folder", help="The folder where RST files will be written.")
 
-    cli_parser.add_argument('--excluded-key',
-                            help='List of keywords in, csv format, that will '
-                                 'be excluded from  the schema parsing '
-                                 'process. By default, its value is '
-                                 'uniqueItems,additionalProperties,$schema.',
-                            default='uniqueItems,'
-                                    'additionalProperties,'
-                                    '$schema'
-                            )
+    cli_parser.add_argument(
+        "--excluded-key",
+        help="List of keywords in, csv format, that will "
+        "be excluded from  the schema parsing "
+        "process. By default, its value is "
+        "uniqueItems,additionalProperties,$schema.",
+        default="uniqueItems," "additionalProperties," "$schema",
+    )
 
     args = cli_parser.parse_args(arguments)
 
@@ -152,5 +139,5 @@ def cli(arguments=None):
     run_parser(src, out, excluded_key)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli(sys.argv[1:])

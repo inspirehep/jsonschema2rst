@@ -23,5 +23,3 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 """Yaml/Json schemas parser and utilities used in inspirehep"""
-
-from __future__ import absolute_import, division, print_function
