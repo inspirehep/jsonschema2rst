@@ -1,6 +1,6 @@
 [project]
 name = "jsonschema2rst"
-version = "0.1.7"
+version = "0.1.8"
 description = "Parser for yaml/json schemas to rst"
 authors = [
     { name = "CERN", email = "admin@inspirehep.net" },
